@@ -15,6 +15,17 @@ function addRiskItem(riskName, riskLevel, department) {
         event.stopPropagation();     
     
         riskDashboard.removeChild(riskCard); });
+    
+    function removingRisk () {  //Function to be called to remove the card
+        document.getElementById("riskDashboard").addEventListener("click", function(event) {
+            if (event.target.classList.contains("resolve-btn")) {
+                event.stopPropagation();
+                event.target.parentElement.remove(); //Removes the card
+            }
+        });
+    };
+    //Calling removingRisk
+    removingRisk();
 
     //Added riskCard content
     riskCard.innerHTML = `  
@@ -33,16 +44,8 @@ addRiskItem("Data Breach", "High", "IT");
 addRiskItem("Supply Chain Disruption", "Medium", "Operations");
 
 //Task 3 - Removing Risk Items
-function removingRisk () {  //Function to be called to remove the card
-    document.getElementById("riskDashboard").addEventListener("click", function(event) {
-        if (event.target.classList.contains("resolve-btn")) {
-            event.stopPropagation();
-            event.target.parentElement.remove(); //Removes the card
-        }
-    });
-};
-//Calling removingRisk
-removingRisk();
+
+//Modified addRiskItem by adding the function removingRisk
 
 //Test Case
 addRiskItem("Market Fluctuations", "High", "Finance");
