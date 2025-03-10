@@ -9,6 +9,7 @@ function addRiskItem(riskName, riskLevel, department) {
     riskCard.classList.add('riskCard');
     riskCard.setAttribute("risk-level", riskLevel)
 
+
     //Added riskCard content
     riskCard.innerHTML = `  
     <h3>${riskName}</h3>
@@ -124,6 +125,9 @@ addRiskItem("Employee Retention", "Low", "HR");
 riskDashboard.appendChild(increaseRiskButton);
 
 
+//Task 6 - Event Propagation Fix
+
+// Click inside a risk card should not trigger a dashboard-wide event.
 
 
 
