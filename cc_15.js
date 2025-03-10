@@ -7,6 +7,17 @@ function addRiskItem(riskName, riskLevel, department) {
     //Creating riskCard div
     const riskCard = document.createElement("div");   
     riskCard.classList.add('riskCard');
+    riskCard.setAttribute("risk-level", riskLevel)
+
+    //Added riskCard content
+    riskCard.innerHTML = `  
+    <h3>${riskName}</h3>
+    <span>Risk Level: <strong>${riskLevel}</strong></span>
+    <p>${department}</p>
+    <button class="resolve-btn">Resolve</button> 
+    `;  
+    //Appending to container
+    riskDashboard.appendChild(riskCard); 
 
     //Added resolveButton for Task 3
     const resolveButton = document.createElement("button"); 
@@ -27,17 +38,40 @@ function addRiskItem(riskName, riskLevel, department) {
     //Calling removingRisk
     removingRisk();
 
-    //Added riskCard content
-    riskCard.innerHTML = `  
-        <h3>${riskName}</h3>
-        <span>Risk Level: <strong>${riskLevel}</strong></span>
-        <p>${department}</p>
-        <button class="resolve-btn">Resolve</button> 
-    `;  
+    function highlightLowCards() { //Highlighting low cards with green
+        const tickets = document.querySelectorAll("[risk-level='Low']");
+        const ticketArray = Array.from(tickets);
+    
+        ticketArray.forEach(ticket => {
+            ticket.style.backgroundColor = "Green";
+            ticket.style.color = "Black";
+        });
+    }
 
-    //Appending to container
-    riskDashboard.appendChild(riskCard); 
-}
+    function highlightMediumCards() {   //Highlighting medium cards with yellow
+        const tickets = document.querySelectorAll("[risk-level='Medium']");
+        const ticketArray = Array.from(tickets);
+    
+        ticketArray.forEach(ticket => {
+            ticket.style.backgroundColor = "Yellow";
+            ticket.style.color = "Black";
+        });
+    }
+
+    function highlightHighCards() {     //Highlighting high cards with red
+        const tickets = document.querySelectorAll("[risk-level='High']");
+        const ticketArray = Array.from(tickets);
+    
+        ticketArray.forEach(ticket => {
+            ticket.style.backgroundColor = "red";
+            ticket.style.color = "white";
+        });
+    }
+    highlightLowCards();
+    highlightMediumCards();
+    highlightHighCards();
+
+};
 
 //Test Cases
 addRiskItem("Data Breach", "High", "IT");
@@ -49,6 +83,13 @@ addRiskItem("Supply Chain Disruption", "Medium", "Operations");
 
 //Test Case
 addRiskItem("Market Fluctuations", "High", "Finance");
+
+
+//Task 4 - Risk Categorization
+
+//Test Cases
+addRiskItem("Cybersecurity Threat", "High", "IT");
+addRiskItem("HR Compliance Issue", "Low", "Human Resources");
 
 
 
