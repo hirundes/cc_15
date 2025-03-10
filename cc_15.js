@@ -44,7 +44,7 @@ function addRiskItem(riskName, riskLevel, department) {
     
         ticketArray.forEach(ticket => {
             ticket.style.backgroundColor = "Green";
-            ticket.style.color = "Black";
+            ticket.style.color = "black";
         });
     }
 
@@ -54,7 +54,7 @@ function addRiskItem(riskName, riskLevel, department) {
     
         ticketArray.forEach(ticket => {
             ticket.style.backgroundColor = "Yellow";
-            ticket.style.color = "Black";
+            ticket.style.color = "black";
         });
     }
 
@@ -64,7 +64,7 @@ function addRiskItem(riskName, riskLevel, department) {
     
         ticketArray.forEach(ticket => {
             ticket.style.backgroundColor = "red";
-            ticket.style.color = "white";
+            ticket.style.color = "black";
         });
     }
     highlightLowCards();
@@ -90,6 +90,44 @@ addRiskItem("Market Fluctuations", "High", "Finance");
 //Test Cases
 addRiskItem("Cybersecurity Threat", "High", "IT");
 addRiskItem("HR Compliance Issue", "Low", "Human Resources");
+
+
+//Task 5 - Bulk Risk Updates
+
+//Added Increase Risk Button 
+const increaseRiskButton = document.createElement("button");
+increaseRiskButton.textContent = "Increase Risk Levels";
+
+//Clicking resuklts in allRiskCards which changes Low TO Medium and Medium TO High
+increaseRiskButton.addEventListener("click", () => {
+    const allRiskCards = document.querySelectorAll('.riskCard');
+    
+    allRiskCards.forEach(riskCard => {
+        const riskLevel = riskCard.getAttribute("risk-level");
+        
+        if (riskLevel === "Low") { //Updating risk level text and colors to match medium
+            riskCard.setAttribute("risk-level", "Medium");
+            riskCard.querySelector("strong").textContent = "Medium";  
+            riskCard.style.backgroundColor = "yellow";  
+            riskCard.style.color = "black";  
+        } else if (riskLevel === "Medium") { //Updating risk level text and color to match high
+            riskCard.setAttribute("risk-level", "High");
+            riskCard.querySelector("strong").textContent = "High";
+            riskCard.style.backgroundColor = "red";  
+            riskCard.style.color = "black";  
+        }
+    });
+});
+
+//Test Case
+addRiskItem("Employee Retention", "Low", "HR");
+riskDashboard.appendChild(increaseRiskButton);
+
+
+
+
+
+
 
 
 
